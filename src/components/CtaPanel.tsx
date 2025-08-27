@@ -6,7 +6,7 @@ const CtaPanel = () => {
   };
 
   const handleExistingAccess = () => {
-    window.open('https://app.powerbi.com/links/LO-QUE-TE-DÉ-TU-URL-DE-POWERBI', '_blank');
+    window.open('https://app.webdashboard.com/es/authentication/login', '_blank');
   };
 
   return (
