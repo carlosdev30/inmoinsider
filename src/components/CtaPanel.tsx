@@ -1,8 +1,12 @@
 import React from 'react';
 
 const CtaPanel = () => {
-  const handleAccess = () => {
-    window.open('https://remax-buro.notion.site/1f318dc466d68051852acc770cff4bc5?pvs=105', '_blank');
+  const handleNewAccess = () => {
+    window.open('https://www.notion.so/remax-buro/FORMULARIO-DE-ACCESO-POWER-BI-1f318dc466d6802e9b21f20207f183cc?pvs=4', '_blank');
+  };
+
+  const handleExistingAccess = () => {
+    window.open('https://app.powerbi.com/links/LO-QUE-TE-DÉ-TU-URL-DE-POWERBI', '_blank');
   };
 
   return (
@@ -13,19 +17,27 @@ const CtaPanel = () => {
             Acceso a la plataforma
           </h2>
           <p className="text-xl mb-8 leading-relaxed opacity-90">
-            Regístrate y recibe un acceso seguro y personalizado a la cartera completa de activos en <strong>Power BI</strong>.
+            Obtén tu acceso exclusivo a la cartera de inmuebles REO del Banco Santander. Regístrate si es tu primera vez o entra directamente si ya tienes acceso.
           </p>
           
-          <button
-            onClick={handleAccess}
-            className="bg-white text-red-600 px-10 py-4 rounded-xl text-lg font-bold hover:bg-gray-50 transition-all duration-200 transform hover:scale-105 shadow-lg"
-          >
-            Acceder ahora
-          </button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button
+              onClick={handleNewAccess}
+              className="bg-white text-red-600 px-8 py-4 rounded-xl text-lg font-bold hover:bg-gray-50 transition-all duration-200 transform hover:scale-105 shadow-lg"
+            >
+              Obtén tu acceso
+            </button>
+            <button
+              onClick={handleExistingAccess}
+              className="bg-transparent text-white border-2 border-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white hover:text-red-600 transition-all duration-200 transform hover:scale-105"
+            >
+              ¿Ya estás registrado? Accede a la cartera
+            </button>
+          </div>
           
           <div className="mt-8 bg-white/10 backdrop-blur-sm p-6 rounded-2xl">
             <p className="text-white/80 text-sm leading-relaxed">
-              Tras completar el formulario, recibirás acceso con filtros avanzados, visualización de datos y opciones de reserva.
+              Tras completar el formulario de registro, recibirás acceso directo a Power BI con filtros avanzados, visualización de datos y opciones de reserva.
             </p>
           </div>
         </div>
