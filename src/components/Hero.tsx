@@ -48,7 +48,7 @@ const Hero = () => {
               onClick={handleAccess}
               className="bg-red-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-red-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
             >
-              Accede a la cartera
+              Obtén tu acceso
             </button>
             <button
               onClick={() => scrollToSection('#how')}
