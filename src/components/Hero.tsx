@@ -51,8 +51,14 @@ const Hero = () => {
               Obtén tu acceso
             </button>
             <button
+              onClick={() => window.open('https://app.webdashboard.com/es/authentication/login', '_blank')}
+              className="bg-white text-red-600 px-8 py-4 rounded-xl text-lg font-semibold border-2 border-red-600 hover:bg-red-50 transition-all duration-200 transform hover:scale-105 shadow-lg"
+            >
+              ¿Ya tienes acceso? Entra aquí
+            </button>
+            <button
               onClick={() => scrollToSection('#how')}
-              className="bg-white text-gray-700 px-8 py-4 rounded-xl text-lg font-semibold border-2 border-gray-200 hover:border-red-600 hover:text-red-600 transition-all duration-200"
+              className="bg-transparent text-gray-700 px-8 py-4 rounded-xl text-lg font-semibold border-2 border-gray-300 hover:border-gray-400 hover:text-gray-900 transition-all duration-200"
             >
               Cómo funciona
             </button>
