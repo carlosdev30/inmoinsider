@@ -1,27 +1,28 @@
-import React from 'react';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import React, { useState } from 'react';
+import { MapPin, Send } from 'lucide-react';
 
 const Contact = () => {
-  const channels = [
-    {
-      icon: Mail,
-      label: "Email",
-      value: "contacto@inmoinsider.com",
-      href: "mailto:kabir.frutos@remax.es"
-    },
-    {
-      icon: Phone,
-      label: "Teléfono",
-      value: "+34 611 373 999",
-      href: "tel:+34611373999"
-    },
-    {
-      icon: MapPin,
-      label: "Oficina",
-      value: "Calle Córcega 116, Barcelona",
-      href: null
-    }
-  ];
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Create mailto link with form data
+    const subject = encodeURIComponent('Consulta desde INMOINSIDER');
+    const body = encodeURIComponent(`Nombre: ${formData.name}\nEmail: ${formData.email}\n\nMensaje:\n${formData.message}`);
+    window.location.href = `mailto:kabir.frutos@remax.es?subject=${subject}&body=${body}`;
+  };
 
   return (
     <section id="contacto" className="py-20 bg-white">
@@ -32,37 +33,86 @@ const Contact = () => {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {channels.map((channel, index) => {
-            const IconComponent = channel.icon;
-            const content = (
-              <div className="bg-gray-50 p-8 rounded-2xl text-center hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                <div className="flex items-center justify-center w-16 h-16 bg-red-100 rounded-2xl mb-6 mx-auto">
-                  <IconComponent className="w-8 h-8 text-red-600" />
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  {channel.label}
-                </h3>
-                <p className="text-gray-600">
-                  {channel.value}
-                </p>
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+          {/* Address */}
+          <div className="text-center md:text-left">
+            <div className="bg-gray-50 p-8 rounded-2xl">
+              <div className="flex items-center justify-center md:justify-start w-16 h-16 bg-red-100 rounded-2xl mb-6 mx-auto md:mx-0">
+                <MapPin className="w-8 h-8 text-red-600" />
               </div>
-            );
+              <h3 className="text-lg font-bold text-gray-900 mb-2">
+                Oficina
+              </h3>
+              <p className="text-gray-600">
+                Calle Córcega 116, Barcelona
+              </p>
+            </div>
+          </div>
 
-            return channel.href ? (
-              <a key={index} href={channel.href} className="block">
-                {content}
-              </a>
-            ) : (
-              <div key={index}>
-                {content}
+          {/* Contact Form */}
+          <div>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                  Nombre completo
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
+                  placeholder="Tu nombre completo"
+                />
               </div>
-            );
-          })}
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
+                  placeholder="tu@email.com"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  Mensaje
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows={4}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 resize-none"
+                  placeholder="Cuéntanos en qué podemos ayudarte..."
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-red-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-red-700 transition-all duration-200 transform hover:scale-105 flex items-center justify-center gap-2"
+              >
+                <Send className="w-5 h-5" />
+                Enviar mensaje
+              </button>
+            </form>
+          </div>
         </div>
 
         {/* Legal Footer */}
-        <div className="border-t border-gray-200 pt-8 text-center">
+        <div className="border-t border-gray-200 pt-8 mt-16 text-center">
           <p className="text-gray-600 text-sm">
             © 2025 INMOINSIDER. Partner comercial: RE/MAX Grupo City.
           </p>
