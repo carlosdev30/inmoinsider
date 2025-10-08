@@ -63,7 +63,10 @@ const Header = () => {
           {/* CTA Button */}
           <div className="hidden md:block">
             <button
-              onClick={() => window.open('https://remax-buro.notion.site/1f318dc466d68051852acc770cff4bc5?pvs=105', '_blank')}
+              onClick={() => {
+                const newWindow = window.open('https://remax-buro.notion.site/1f318dc466d68051852acc770cff4bc5?pvs=105', '_blank');
+                if (newWindow) newWindow.opener = null;
+              }}
               className="bg-red-600 text-white px-6 py-2 rounded-xl font-semibold hover:bg-red-700 transition-all duration-200 transform hover:scale-105"
             >
               Obtén tu acceso
@@ -95,7 +98,10 @@ const Header = () => {
                 </button>
               ))}
               <button
-                onClick={() => window.open('https://remax-buro.notion.site/1f318dc466d68051852acc770cff4bc5?pvs=105', '_blank')}
+                onClick={() => {
+                  const newWindow = window.open('https://remax-buro.notion.site/1f318dc466d68051852acc770cff4bc5?pvs=105', '_blank');
+                  if (newWindow) newWindow.opener = null;
+                }}
                 className="block w-full text-left bg-red-600 text-white px-3 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors duration-200 mt-2"
               >
                 Obtén tu acceso

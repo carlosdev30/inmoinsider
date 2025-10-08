@@ -9,7 +9,8 @@ const Hero = () => {
   };
 
   const handleAccess = () => {
-    window.open('https://remax-buro.notion.site/1f318dc466d68051852acc770cff4bc5?pvs=105', '_blank');
+    const newWindow = window.open('https://remax-buro.notion.site/1f318dc466d68051852acc770cff4bc5?pvs=105', '_blank');
+    if (newWindow) newWindow.opener = null;
   };
 
   return (
@@ -51,7 +52,10 @@ const Hero = () => {
               Obtén tu acceso
             </button>
             <button
-              onClick={() => window.open('https://app.webdashboard.com/es/authentication/login', '_blank')}
+              onClick={() => {
+                const newWindow = window.open('https://app.webdashboard.com/es/authentication/login', '_blank');
+                if (newWindow) newWindow.opener = null;
+              }}
               className="bg-white text-red-600 px-8 py-4 rounded-xl text-lg font-semibold border-2 border-red-600 hover:bg-red-50 transition-all duration-200 transform hover:scale-105 shadow-lg"
             >
               ¿Ya tienes acceso? Entra aquí
